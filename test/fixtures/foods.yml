@@ -2,12 +2,10 @@
 
 one:
   name: MyString
-  picture: MyString
   calories: 1
   serving: 1
 
 two:
   name: MyString
-  picture: MyString
   calories: 1
   serving: 1
