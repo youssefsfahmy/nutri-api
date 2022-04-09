@@ -31,7 +31,6 @@ class ApplicationController < ActionController::API
     # end
 
     def require_to_be_admin!
-        p Current.user[:admin] == false
         render json: {message: "Access denied, admin autherization only", statusCode: 500}, status: :unprocessable_entity if  Current.user[:admin] == false 
     end
 

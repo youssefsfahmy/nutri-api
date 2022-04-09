@@ -15,9 +15,7 @@ class RegistrationsController  < ApplicationController
     def create
         begin
         @user = User.new(user_params)
-        p @params
         rescue => error
-            p error
 
             render json: {message: error, statusCode: 400}
             return
@@ -31,7 +29,6 @@ class RegistrationsController  < ApplicationController
             session[:user_id]= @user.id
             render json: {user: @user,  statusCode: 0, message: "Success"} 
         else
-            p @user.errors.first
             render json:  {statusCode: 401 ,message:@user.errors.first.message }
         
     end

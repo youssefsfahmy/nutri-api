@@ -7,15 +7,11 @@ class AdminController  < ApplicationController
 
     def add_food_item 
 
-        p food_params
         @a = params[:avatar]
         
         @fooditem = Food.create!(food_params)
         @fooditem.avatar.attach(params[:avatar])
-        p "---------------------------"
 
-        p @fooditem.avatar
-        # p fooditem
         # fooditem.picture.attach(params[:image])
     end
 
@@ -23,15 +19,13 @@ class AdminController  < ApplicationController
 
     def add_image_to_item
         @fooditem = Fooditem.find_by(id: 2)
-        p @fooditem
-        # @fooditem.image.attach(params[:image])
-        p @fooditem.image.attached?
+
     end
 
 
     private
     def food_params
-        hash = JSON.parse p params[:data]
+        hash = JSON.parse  params[:data]
 
 
         

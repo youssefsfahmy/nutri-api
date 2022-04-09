@@ -3,7 +3,6 @@ class AccountController  < ApplicationController
 
     def auth
         @user = logged_in_user()
-        p "------------------"
         auth_header= auth_header()
          token = auth_header.split(' ')[1]
           render json: {user:@user, message: 'Success', token: token}, status: :created
@@ -22,13 +21,9 @@ class AccountController  < ApplicationController
     end
 
     def show_one_food 
-        p"-----------------"
 
-        p image_params
-        p"-----------------"
 
         @food = Food.find_by(id:params[:id])
-        p @food
         if(@food.avatar.attached?)
             @route = Rails.application.routes.url_helpers.rails_blob_path(@food.avatar, only_path: true)
         else
@@ -79,8 +74,7 @@ class AccountController  < ApplicationController
         
         @remaining = Current.user.remainingcalories - params[:fooditem][:calories]
 
-       
-        p @remaining
+
 
         if @remaining < 0
             render json:  {statusCode: 405 ,message: "Calories exceed the remaining calories" } 

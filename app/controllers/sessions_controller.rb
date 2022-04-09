@@ -11,7 +11,6 @@ class SessionsController  < ApplicationController
         end
 
         @user = User.find_by(email: params[:user][:email])
-        p params[:user][:email]
         if @user.present? 
             if  @user.authenticate(params[:user][:password])
 
