@@ -1,4 +1,6 @@
 class RegistrationsController  < ApplicationController
+
+    
     def index
         user = User.all
         render json: user.to_json
@@ -13,23 +15,20 @@ class RegistrationsController  < ApplicationController
     def create
         begin
         @user = User.new(user_params)
-        p @params
         rescue => error
-            p error
 
-            render json: {message: error, statusCode: 400}, status: 800, statusCode: 1
+            render json: {message: error, statusCode: 400}
             return
         end
 
         if User.find_by(email: @user.email) 
-            render json: {message: "Email already exists", statusCode: 402}, status: 801, statusCode: 1
+            render json: {message: "Email already exists", statusCode: 402}
             return
         end
         if @user.save
             session[:user_id]= @user.id
-            render json: {user: @user,  statusCode: 0, message: "Success"} , status: :created, location: @band
+            render json: {user: @user,  statusCode: 0, message: "Success"} 
         else
-            p @user.errors.first
             render json:  {statusCode: 401 ,message:@user.errors.first.message }
         
     end

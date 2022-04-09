@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_05_114400) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_07_210302) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -50,7 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_05_114400) do
 
   create_table "foods", force: :cascade do |t|
     t.string "name"
-    t.string "picture"
     t.integer "calories"
     t.integer "serving"
     t.datetime "created_at", null: false
@@ -59,13 +58,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_05_114400) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
+    t.string "name"
     t.string "password_digest"
     t.integer "caloriesperday"
     t.boolean "admin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "remainingcalories"
     t.date "dateremaining"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
