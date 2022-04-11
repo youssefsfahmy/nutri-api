@@ -4,7 +4,7 @@ class UserController < ApplicationController
     # REGISTER
     def create
       if User.find_by(email: params[:user][:email]) 
-        render json: {message: "Email already exists", statusCode: 402}
+        render json: {error: "Email already exists", statusCode: 500}
         return
     end
       @user = User.create(user_params)
@@ -19,7 +19,7 @@ class UserController < ApplicationController
     # LOGGING IN
     def login
       @user = User.find_by(email: params[:user][:email])
-  
+      
       if @user && @user.authenticate(params[:user][:password])
         token = encode_token({user_id: @user.id, admin: @user.admin})
         render json: {user: @user, token: token}
